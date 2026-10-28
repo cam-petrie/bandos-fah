@@ -12,7 +12,10 @@ Requires Java 11 or newer; Java 17 or 21 is recommended for development.
 
 This starts a separate RuneLite development client with the plugin loaded. In its plugin settings, search for **Bandos FAHHHH** and enable it. The selected FAHHHH clip is bundled and plays automatically on ground slams. Open the **FAH** sidebar and click **Play FAHHHH** to check playback. Adjust **Volume** in the plugin's settings. You can also choose a custom WAV and restore the bundled clip with **Use original FAHHHH**. Your selection is saved in the current RuneLite configuration profile.
 
+In **Bandos FAHHHH** settings, toggle **Enable sound effect** to turn automatic ground-slam playback on or off without disabling the plugin. It defaults to on and is saved with your profile. **Play FAHHHH** remains available for manual previews. Turning the effect off prevents future slams from playing; an already-playing clip finishes normally.
+
 Use a short, uncompressed PCM WAV file. MP3 is not supported directly. On macOS you can convert a local clip with:
+
 
 ```sh
 afconvert -f WAVE -d LEI16 '/full/path/to/fah.mp3' '/full/path/to/fah.wav'

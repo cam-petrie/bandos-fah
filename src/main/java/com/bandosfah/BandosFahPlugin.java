@@ -120,6 +120,7 @@ public class BandosFahPlugin extends Plugin
     @Subscribe
     public void onAnimationChanged(AnimationChanged event)
     {
+        if (!config.effectEnabled()) { return; }
         if (!(event.getActor() instanceof NPC)) { return; }
         NPC npc = (NPC) event.getActor();
         if (npc.getId() != GRAARDOR || npc.getAnimation() != GROUND_SLAM) { return; }

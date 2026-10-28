@@ -14,6 +14,7 @@ public class BandosFahPluginTest
     private BandosFahPlugin plugin;
     private Client client;
     private NPC graardor;
+    private BandosFahConfig config;
 
     private static AnimationChanged animationChanged(Actor actor)
     {
@@ -28,6 +29,9 @@ public class BandosFahPluginTest
         plugin = spy(new BandosFahPlugin());
         client = mock(Client.class);
         plugin.client = client;
+        config = mock(BandosFahConfig.class);
+        plugin.config = config;
+        when(config.effectEnabled()).thenReturn(true);
         doNothing().when(plugin).playSound();
         graardor = mock(NPC.class);
         when(graardor.getId()).thenReturn(2215);
@@ -44,6 +48,18 @@ public class BandosFahPluginTest
         when(client.getTickCount()).thenReturn(106);
         plugin.onAnimationChanged(animationChanged(graardor));
         verify(plugin, times(2)).playSound();
+    }
+
+    @Test
+    public void toggleMutesSlamsAndCanBeReenabled()
+    {
+        when(config.effectEnabled()).thenReturn(false);
+        plugin.onAnimationChanged(animationChanged(graardor));
+        verify(plugin, never()).playSound();
+        when(config.effectEnabled()).thenReturn(true);
+        when(client.getTickCount()).thenReturn(106);
+        plugin.onAnimationChanged(animationChanged(graardor));
+        verify(plugin, times(1)).playSound();
     }
 
     @Test
