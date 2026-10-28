@@ -23,5 +23,8 @@ tasks.register('run', JavaExec) {
     classpath = sourceSets.test.runtimeClasspath
     mainClass = 'com.bandosfah.BandosFahLauncher'
     jvmArgs '-ea'
+    if (System.getProperty('os.name').toLowerCase(java.util.Locale.ROOT).contains('mac')) {
+        jvmArgs '--add-opens=java.desktop/com.apple.eawt=ALL-UNNAMED'
+    }
     args '--developer-mode', '--debug'
 }
